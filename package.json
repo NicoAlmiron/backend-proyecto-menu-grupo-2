@@ -1,0 +1,12 @@
+{
+  "name": "backend-proyecto-menu-grupo-2",
+  "version": "1.0.0",
+  "description": "Backend del proyecto menu - grupo 2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Grupo 2",
+  "license": "ISC"
+}
