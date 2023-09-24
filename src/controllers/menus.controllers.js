@@ -1,3 +1,10 @@
+import Menu from "../models/menus";
+
 export const listarMenus = (req, res) => {
-    res.send('estamos probando')
+    try {
+
+        res.send('estamos probando')
+    } catch (error) {
+        console.log(error);
+    }
 }
