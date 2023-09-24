@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { listarMenus } from "../controllers/menus.controllers.js";
+import { crearMenus, listarMenus } from "../controllers/menus.controllers.js";
 
 const router = Router();
 
-router.route('/menus').get(listarMenus)
+router.route('/menus').get(listarMenus).post(crearMenus)
 
 export default router;
