@@ -1,23 +1,19 @@
 import mongoose, {Schema} from "mongoose";
 
 const usuarioSchema = new Schema({
-    id:{
-        type: Number,
-        required: true,
-        unique: true,
-    },
     nombre:{
         type: String,
         required: true,
-        unique: true,
         minLenght: 2,
         maxLenght: 16,
     },
     email: {
         type: String,
+        maxLenght:200,
         required: true,
         unique: true,
         match: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+
     },
     password: {
         type: String,
@@ -26,12 +22,10 @@ const usuarioSchema = new Schema({
     },
     estado: {
         type: Boolean,
-        required: true,
     },
     perfil: {
         type: String,
-        required: true,
-    },
+    }
 })
 
 const Usuario = mongoose.model('usuario', usuarioSchema);
