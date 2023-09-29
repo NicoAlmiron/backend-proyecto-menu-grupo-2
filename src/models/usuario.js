@@ -9,10 +9,9 @@ const usuarioSchema = new Schema({
     },
     email: {
         type: String,
-        maxLenght:200,
         required: true,
         unique: true,
-        match: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+        match: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,200}$/
 
     },
     password: {
