@@ -1,23 +1,33 @@
 import Usuario from "../models/usuario.js"
+import bcrypt from 'bcrypt';
 
-export const login = async (req, res) => {
+export const crearUsuario = async (req, res) => {
     try {
         const { email, password } = req.body;
-        let usuario = await Usuario.findOne({ email });
-        if (!usuario) {
+
+        let usuario = await Usuario.findOne({ email }); //devuelve un null
+        console.log(usuario);
+        if (usuario) {
         return res.status(400).json({
-            mensaje: "Correo o password invalido",
+        mensaje: "Error al crear un usuario nuevo, este correo ya existe",
         });
-    }
-        res.status(200).json({
-            mensaje: "El usuario existe",
+        }
+
+        usuario = new Usuario(req.body);
+        console.log(usuario);
+        const salt = bcrypt.genSaltSync(10);
+        usuario.password = bcrypt.hashSync(password, salt);
+
+        await usuario.save();
+        res.status(201).json({
+            mensaje: "usuario creado",
+            nombre: usuario.nombre,
             uid: usuario._id,
-            nombre: usuario.nombreUsuario,
         });
     } catch (error) {
         console.log(error);
         res.status(400).json({
-            mensaje: "usuario o contraseña invalido",
+            mensaje: "El usuario no pudo ser creado",
         });
     }
 };
@@ -31,31 +41,6 @@ export const listarUsuarios = async (req, res) => {
         res.status(404).json({
             mensaje: "Error al buscar usuarios"
         })
-    }
-};
-
-export const crearUsuario = async (req, res) => {
-    try {
-    //Verificar si el email ya existe
-        const { email } = req.body;
-        let usuario = await Usuario.findOne({ email }); //devuelve un null si no existe
-        console.log(usuario);
-        if (usuario) {
-            return res.status(400).json({
-                mensaje: "Ya existe un usuario con el correo enviado",
-            });
-        }
-    //Crear un nuevo usuario
-        usuario = new Usuario(req.body);
-        await usuario.save();
-        res.status(201).json({
-        mensaje: "usuario creado"
-        });
-    } catch (error) {
-        console.log(error);
-        res.status(400).json({
-        mensaje: "El usuario no pudo ser creado",
-        });
     }
 };
 
@@ -84,5 +69,35 @@ export const borrarUsuario = async (req, res) => {
         res.status(400).json({
             mensaje: "El usuario no pudo ser borrado"
         })
+    }
+};
+
+export const login = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        let usuario = await Usuario.findOne({ email });
+        if (!usuario) {
+            return res.status(400).json({
+                mensaje: "Correo o password invalido - correo",
+            });
+        }
+
+        const passwordValido = bcrypt.compareSync(password, usuario.password);
+        if (!passwordValido) {
+            return res
+                .status(400).json({ 
+                    mensaje: "Correo o password invalido - password" });
+        }
+
+        res.status(200).json({
+            mensaje: "El usuario existe",
+            uid: usuario._id,
+            nombre: usuario.nombreUsuario,
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({
+        mensaje: "usuario o contraseña invalido",
+        });
     }
 };

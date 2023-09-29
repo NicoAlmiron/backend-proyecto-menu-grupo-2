@@ -17,7 +17,8 @@ const usuarioSchema = new Schema({
     password: {
         type: String,
         required: true,
-        match: /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/
+        minLenght: 8,
+        maxLenght:200,
     },
     estado: {
         type: Boolean,
