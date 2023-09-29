@@ -17,9 +17,9 @@ export const listarUsuarios = async (req, res) => {
 export const crearUsuarios = async (req, res) => {
     try{
        
-        const usuarioNUevo = new Usuario(req.body)
+        const usuarioNuevo = new Usuario(req.body)
         
-        await usuarioNUevo.save();
+        await usuarioNuevo.save();
         res.status(201).json({
             mensaje: "El usuario fue creado correctamente"
         })
@@ -29,6 +29,20 @@ export const crearUsuarios = async (req, res) => {
         console.log(error);
         res.status(400).json({
             mensaje: "El usuario no pudo ser creado"
+        })
+    }
+}
+
+export const editarUsuarios = async (req, res) => {
+    try{
+        await Usuario.findByIdAndUpdate(req.params.id, req.body) 
+        res.status(200).json({
+            mensaje: "El usuario fue editado correctamente"
+        })
+    }catch(error){
+        console.log(error);
+        res.status(400).json({
+            mensaje: "El usuario no pudo ser editado"
         })
     }
 }
