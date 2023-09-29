@@ -1,5 +1,26 @@
 import Usuario from "../models/usuario.js"
 
+export const login = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        let usuario = await Usuario.findOne({ email });
+        if (!usuario) {
+        return res.status(400).json({
+            mensaje: "Correo o password invalido",
+        });
+    }
+        res.status(200).json({
+            mensaje: "El usuario existe",
+            uid: usuario._id,
+            nombre: usuario.nombreUsuario,
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({
+            mensaje: "usuario o contraseña invalido",
+        });
+    }
+};
 
 export const listarUsuarios = async (req, res) => {
     try{
@@ -14,30 +35,29 @@ export const listarUsuarios = async (req, res) => {
 };
 
 export const crearUsuario = async (req, res) => {
-  try {
+    try {
     //Verificar si el email ya existe
-    const { email } = req.body;
-    let usuario = await Usuario.findOne({ email }); //devuelve un null si no existe
-    console.log(usuario);
-    if (usuario) {
-      return res.status(400).json({
-        mensaje: "Ya existe un usuario con el correo enviado",
-      });
-    }
+        const { email } = req.body;
+        let usuario = await Usuario.findOne({ email }); //devuelve un null si no existe
+        console.log(usuario);
+        if (usuario) {
+            return res.status(400).json({
+                mensaje: "Ya existe un usuario con el correo enviado",
+            });
+        }
     //Crear un nuevo usuario
-    usuario = new Usuario(req.body);
-    await usuario.save();
-    res.status(201).json({
-      mensaje: "usuario creado"
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(400).json({
-      mensaje: "El usuario no pudo ser creado",
-    });
-  }
+        usuario = new Usuario(req.body);
+        await usuario.save();
+        res.status(201).json({
+        mensaje: "usuario creado"
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({
+        mensaje: "El usuario no pudo ser creado",
+        });
+    }
 };
-
 
 export const editarUsuario = async (req, res) => {
     try{
@@ -51,7 +71,7 @@ export const editarUsuario = async (req, res) => {
             mensaje: "El usuario no pudo ser editado"
         })
     }
-}
+};
 
 export const borrarUsuario = async (req, res) => {
     try{
@@ -65,4 +85,4 @@ export const borrarUsuario = async (req, res) => {
             mensaje: "El usuario no pudo ser borrado"
         })
     }
-}
+};
