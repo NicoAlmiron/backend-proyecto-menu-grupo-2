@@ -46,3 +46,18 @@ export const editarUsuarios = async (req, res) => {
         })
     }
 }
+
+
+export const borrarUsuario = async (req, res) => {
+    try{
+        await Usuario.findByIdAndDelete(req.params.id) 
+        res.status(200).json({
+            mensaje: "El usuario fue borrado correctamente"
+        })
+    }catch(error){
+        console.log(error);
+        res.status(400).json({
+            mensaje: "El usuario no pudo ser borrado"
+        })
+    }
+}
