@@ -19,6 +19,7 @@ export const crearUsuario = async (req, res) => {
         usuario.password = bcrypt.hashSync(password, salt);
 
         await usuario.save();
+
         res.status(201).json({
             mensaje: "usuario creado",
             nombre: usuario.nombre,
