@@ -18,3 +18,5 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 app.use('/api/users', usuarioRouter);
 app.use('/api', menuRouter);
+app.use("/api", pedidosRouter);
+
