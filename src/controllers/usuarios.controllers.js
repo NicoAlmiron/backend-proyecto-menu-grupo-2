@@ -1,3 +1,4 @@
+import generarJWT from "../helpers/token-sign.js";
 import Usuario from "../models/usuario.js";
 import bcrypt from 'bcrypt';
 
@@ -92,11 +93,14 @@ export const login = async (req, res) => {
                 mensaje: "Correo o password invalido - password"
             });
         }
+        //Una vez verificado Usuario y Password, creo el token o credencial
+        const token = await generarJWT(usuario._id, usuario.nombre)
 
         res.status(200).json({
             mensaje: "El usuario existe",
             uid: usuario._id,
             nombre: usuario.nombre,
+            tokenGenerado: token
         });
     } catch (error) {
         console.log(error);
