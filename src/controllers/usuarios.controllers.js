@@ -1,11 +1,10 @@
 import Usuario from "../models/usuario.js";
 import bcrypt from 'bcrypt';
 
-export const crearUsuario = async (req, res) => {
+export const crearUsuario = async(req, res) => {
     try {
         const { email, password } = req.body;
-
-        let usuario = await Usuario.findOne({ email }); //devuelve un null
+        let usuario = await Usuario.findOne({ email });
         console.log(usuario);
         if (usuario) {
             return res.status(400).json({
@@ -36,7 +35,7 @@ export const crearUsuario = async (req, res) => {
     }
 };
 
-export const listarUsuarios = async (req, res) => {
+export const listarUsuarios = async(req, res) => {
     try {
         const usuarios = await Usuario.find();
         res.status(200).json(usuarios)
@@ -48,7 +47,7 @@ export const listarUsuarios = async (req, res) => {
     }
 };
 
-export const editarUsuario = async (req, res) => {
+export const editarUsuario = async(req, res) => {
     try {
         await Usuario.findByIdAndUpdate(req.params.id, req.body)
         res.status(200).json({
@@ -62,7 +61,7 @@ export const editarUsuario = async (req, res) => {
     }
 };
 
-export const borrarUsuario = async (req, res) => {
+export const borrarUsuario = async(req, res) => {
     try {
         await Usuario.findByIdAndDelete(req.params.id)
         res.status(200).json({
@@ -76,7 +75,7 @@ export const borrarUsuario = async (req, res) => {
     }
 };
 
-export const login = async (req, res) => {
+export const login = async(req, res) => {
     try {
         const { email, password } = req.body;
         let usuario = await Usuario.findOne({ email });
