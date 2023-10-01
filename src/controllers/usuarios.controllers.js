@@ -1,8 +1,17 @@
-import Usuario from "../models/usuario.js"
+import Usuario from "../models/usuario.js";
 import bcrypt from 'bcrypt';
+import { validationResult } from "express-validator";;
 
 export const crearUsuario = async (req, res) => {
     try {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({
+                errores: errors.array()
+            })
+        }
+
+
         const { email, password } = req.body;
 
         let usuario = await Usuario.findOne({ email }); //devuelve un null
@@ -12,6 +21,9 @@ export const crearUsuario = async (req, res) => {
                 mensaje: "Error al crear un usuario nuevo, este correo ya existe",
             });
         }
+
+        //Genero la validacion
+
 
         usuario = new Usuario(req.body);
         console.log(usuario);
