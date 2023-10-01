@@ -1,8 +1,9 @@
 import { Router } from "express";
-import { listarMenus } from "../controllers/menus.controllers.js";
-
+import { crearMenus, editarMenu, eliminarMenu, listarMenus, obtenerMenu } from "../controllers/menus.controllers.js";
+import validarMenu from "../helpers/validarMenu.js";
 const router = Router();
 
-router.route('/menus').get(listarMenus)
+router.route('/menus').get(listarMenus).post(validarMenu, crearMenus)
+router.route('/menus/:id').put(validarMenu, editarMenu).delete(eliminarMenu).get(obtenerMenu)
 
 export default router;
