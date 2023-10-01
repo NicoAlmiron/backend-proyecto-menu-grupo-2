@@ -12,9 +12,9 @@ const validarJWT = (req, res, next) => {
         const payload = jwt.verify(token, process.env.SECRET_JWT)
         req.id = payload.uid;
         req.nombre = payload.nombre;
+        req.perfil = payload.perfil;
     } catch (error) {
         console.log(error)
-        //401: error en la autenticacion
         return res.status(401).json({
             mensaje: 'El token no es valido'
         })
