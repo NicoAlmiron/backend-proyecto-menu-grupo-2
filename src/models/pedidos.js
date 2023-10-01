@@ -1,29 +1,19 @@
 import mongoose, { Schema } from "mongoose";
 
 const pedidosSchema = new Schema({
-  nombreMenu: {
+  usuario: { type: String, required: true },
+  fecha: {
     type: String,
     required: true,
-    unique: true,
-    minLength: 2,
-    maxLength: 50,
+    match:
+      /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4} (0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/,
   },
-  precio: {
-    type: Number,
-    required: true,
-    min: 1,
-    max: 10000,
-  },
-  imagen: {
-    type: String,
+  menu: {
+    type: Array,
     required: true,
   },
-  detalle: {
-    type: String,
-    required: true,
-  },
-  categoria: {
-    type: String,
+  estado: {
+    type: Boolean,
     required: true,
   },
 });
