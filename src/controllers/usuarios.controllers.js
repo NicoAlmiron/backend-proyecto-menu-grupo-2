@@ -90,7 +90,7 @@ export const login = async(req, res) => {
             });
         }
 
-        const token = await generarJWT(usuario._id, usuario.nombre, usuario.perfil)
+        const token = await generarJWT(usuario._id, usuario.nombre)
 
         res.status(200).json({
             mensaje: "El usuario existe",
