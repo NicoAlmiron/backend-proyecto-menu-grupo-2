@@ -1,7 +1,7 @@
-import mongoose, {Schema} from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const usuarioSchema = new Schema({
-    nombre:{
+    nombre: {
         type: String,
         required: true,
         minLenght: 2,
@@ -18,13 +18,13 @@ const usuarioSchema = new Schema({
         type: String,
         required: true,
         minLenght: 8,
-        maxLenght:200,
+        maxLenght: 200,
     },
     estado: {
         type: Boolean,
     },
     perfil: {
-        type: String,
+        type: Boolean,
     }
 })
 
