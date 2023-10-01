@@ -8,8 +8,6 @@ import {
 } from "../controllers/usuarios.controllers.js";
 import validacionesUsuarios from "../helpers/validacionUsuario.js";
 
-
-
 const usuarioRouter = Router();
 
 usuarioRouter

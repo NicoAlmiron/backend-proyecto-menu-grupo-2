@@ -1,7 +1,8 @@
+import generarJWT from "../helpers/token-sign.js";
 import Usuario from "../models/usuario.js";
 import bcrypt from 'bcrypt';
 
-export const crearUsuario = async(req, res) => {
+export const crearUsuario = async (req, res) => {
     try {
         const { email, password } = req.body;
         let usuario = await Usuario.findOne({ email });
@@ -11,9 +12,6 @@ export const crearUsuario = async(req, res) => {
                 mensaje: "Error al crear un usuario nuevo, este correo ya existe",
             });
         }
-
-        //Genero la validacion
-
 
         usuario = new Usuario(req.body);
         console.log(usuario);
@@ -35,7 +33,7 @@ export const crearUsuario = async(req, res) => {
     }
 };
 
-export const listarUsuarios = async(req, res) => {
+export const listarUsuarios = async (req, res) => {
     try {
         const usuarios = await Usuario.find();
         res.status(200).json(usuarios)
@@ -47,7 +45,7 @@ export const listarUsuarios = async(req, res) => {
     }
 };
 
-export const editarUsuario = async(req, res) => {
+export const editarUsuario = async (req, res) => {
     try {
         await Usuario.findByIdAndUpdate(req.params.id, req.body)
         res.status(200).json({
@@ -61,7 +59,7 @@ export const editarUsuario = async(req, res) => {
     }
 };
 
-export const borrarUsuario = async(req, res) => {
+export const borrarUsuario = async (req, res) => {
     try {
         await Usuario.findByIdAndDelete(req.params.id)
         res.status(200).json({
@@ -75,7 +73,7 @@ export const borrarUsuario = async(req, res) => {
     }
 };
 
-export const login = async(req, res) => {
+export const login = async (req, res) => {
     try {
         const { email, password } = req.body;
         let usuario = await Usuario.findOne({ email });
@@ -91,11 +89,14 @@ export const login = async(req, res) => {
                 mensaje: "Correo o password invalido - password"
             });
         }
+        //Una vez verificado Usuario y Password, creo el token o credencial
+        const token = await generarJWT(usuario._id, usuario.nombre)
 
         res.status(200).json({
             mensaje: "El usuario existe",
             uid: usuario._id,
             nombre: usuario.nombre,
+            tokenGenerado: token
         });
     } catch (error) {
         console.log(error);
