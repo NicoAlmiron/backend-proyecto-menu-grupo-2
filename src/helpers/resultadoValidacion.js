@@ -4,10 +4,13 @@ const resultadoValidacion = (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({
-            errors: errors.array(),
-        });
+
+            errores: errors.array()
+        })
     }
     next();
-};
+}
 
-export default resultadoValidacion
+export default resultadoValidacion;
+
+

@@ -1,4 +1,4 @@
-import Usuario from "../models/usuario.js"
+import Usuario from "../models/usuario.js";
 import bcrypt from 'bcrypt';
 
 export const crearUsuario = async(req, res) => {
@@ -12,12 +12,16 @@ export const crearUsuario = async(req, res) => {
             });
         }
 
+        //Genero la validacion
+
+
         usuario = new Usuario(req.body);
         console.log(usuario);
         const salt = bcrypt.genSaltSync(10);
         usuario.password = bcrypt.hashSync(password, salt);
 
         await usuario.save();
+
         res.status(201).json({
             mensaje: "usuario creado",
             nombre: usuario.nombre,
