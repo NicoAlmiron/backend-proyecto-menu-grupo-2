@@ -11,7 +11,6 @@ export const crearUsuario = async (req, res) => {
             })
         }
 
-
         const { email, password } = req.body;
 
         let usuario = await Usuario.findOne({ email }); //devuelve un null
