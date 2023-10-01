@@ -1,16 +1,8 @@
 import Usuario from "../models/usuario.js";
 import bcrypt from 'bcrypt';
-import { validationResult } from "express-validator";;
 
 export const crearUsuario = async (req, res) => {
     try {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(400).json({
-                errores: errors.array()
-            })
-        }
-
         const { email, password } = req.body;
 
         let usuario = await Usuario.findOne({ email }); //devuelve un null
