@@ -1,3 +1,9 @@
+import Pedidos from "../models/pedidos";
+
 export const listarPedidos = (req, res) => {
-  res.send("esto es una prueba de pedidos");
+  try {
+    res.send("esto es una prueba");
+  } catch (error) {
+    console.log(error);
+  }
 };
