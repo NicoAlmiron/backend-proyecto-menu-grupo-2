@@ -4,6 +4,7 @@ import morgan from "morgan";
 import 'dotenv/config';
 import usuarioRouter from "./src/routes/usuarios.routes.js";
 import menuRouter from "./src/routes/menus.routes.js";
+import pedidosRouter from "./src/routes/pedidos.routes.js"
 import './src/database/database.js'
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -27,4 +28,3 @@ app.use(express.static(path.join(_dirname, '/public')));
 app.use('/api/users', usuarioRouter);
 app.use('/api', menuRouter);
 app.use("/api", pedidosRouter);
-

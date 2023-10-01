@@ -30,7 +30,7 @@ const validarMenu = [
     .notEmpty()
     .withMessage("La categoria es obligatoria")
     .isIn(["Desayunos", "Entradas", "Platos Principales", "Acompañamientos", "Postres", "Bebidas", "Comida Rapida", "Comidas Etnicas", "Comidas Saludables"])
-    .withMessage("Debe ingresar una categoria valida"),
+    .withMessage("Debe ingresar una categoria valida"), check("detalle").notEmpty().withMessage("El detalle del producto es obligatorio").isLength({ max: 600 }).withMessage("El limite es de 600 caracteres"),
     (req, res, next) => { resultadoValidacion(req, res, next) }
 ];
 

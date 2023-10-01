@@ -17,6 +17,7 @@ const menuSchema = new Schema({
     imagen: {
         type: String,
         required: true,
+        match: /^https?:\/\/[\w\-]+(\.[\w\-]+)+[/#?]?.*$/
     },
     categoria: {
         type: String,
@@ -27,11 +28,6 @@ const menuSchema = new Schema({
         required: true,
         maxLength: 600,
     },
-    estado: {
-        type: Boolean,
-        required: true,
-    }
-
 });
 
 
