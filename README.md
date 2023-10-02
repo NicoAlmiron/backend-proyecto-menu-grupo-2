@@ -9,7 +9,7 @@
 _Estas son las herramientas utilizadas para crear el backend_
 
 - [nodeJS v.18.18.0LTS](https://nodejs.org/es) - Entorno de ejecución para JavaScript
-- [nodemon v.3.0.1](https://www.npmjs.com/package/nodemon) - Herramienta de NodeJs para Monitorear cambios en modo desaroolo.
+- [nodemon v.3.0.1](https://www.npmjs.com/package/nodemon) - Herramienta de NodeJs para Monitorear cambios en modo desarrollo.
 - [MongoDB Atlas](https://www.mongodb.com/es) - Servicio de base de datos NoSQL.
 
 ## Librerias utilizadas en este Backend 📚
