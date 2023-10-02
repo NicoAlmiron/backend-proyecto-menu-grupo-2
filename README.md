@@ -44,3 +44,4 @@ _Los alumnos de la academia Rolling Code, Comision 43i, que participamos en el d
 - **Matias Nicolas Ortega**
 - **Hector Federico Iñigo Andrada**
 - **Tufi Quipildor**
+- **Lucas Daniel Figueroa**
