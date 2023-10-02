@@ -1,6 +1,6 @@
 # Backend de Menú "La Campiña"
 
-![logoFrontBack]([https://](https://github.com/NicoAlmiron/backend-proyecto-menu-grupo-2/blob/main/Logo-Front-Back.JPG))
+![logoFrontBack](https://github.com/NicoAlmiron/backend-proyecto-menu-grupo-2/blob/main/Logo-Front-Back.JPG)
 
 > _Este es el Backend de una Aplicacion Web de estudio que simula un Menú Online de pedidos de comidas de un Restautante, de nombre "LA CAMPIÑA"_ >
 
