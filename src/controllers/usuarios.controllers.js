@@ -90,6 +90,13 @@ export const login = async(req, res) => {
             });
         }
 
+        if (!usuario.estado) {
+            return res.status(400).json({
+                mensaje: "Usuario Suspendido"
+            });
+        }
+
+
         const token = await generarJWT(usuario._id, usuario.nombre, usuario.perfil)
 
         res.status(200).json({
